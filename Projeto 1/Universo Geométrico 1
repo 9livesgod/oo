@@ -1,0 +1,86 @@
+Classe Circulo:
+    Atributos:
+        - raio: Real
+
+    Métodos:
+        - Construtor(raio: Real)
+        - CalcularArea(): Real
+        - CalcularPerimetro(): Real
+
+    Função Construtor(raio: Real):
+        calc.RAIO = raio
+
+    Função CalcularArea(): Real:
+        Retornar π * calc.RAIO^2
+
+    Função CalcularPerimetro(): Real:
+        Retornar 2 * π * calc.RAIO
+
+Classe Quadrado:
+    Atributos:
+        - lado: Real
+
+    Métodos:
+        - Construtor(lado: Real)
+        - CalcularArea(): Real
+        - CalcularPerimetro(): Real
+
+    Função Construtor(lado: Real):
+        calc.LADO = lado
+
+    Função CalcularArea(): Real:
+        Retornar calc.LADO^2
+
+    Função CalcularPerimetro(): Real:
+        Retornar 4 * calc.LADO
+
+Classe Triangulo:
+    Atributos:
+        - base: Real
+        - altura: Real
+
+    Métodos:
+        - Construtor(base: Real, altura: Real)
+        - CalcularArea(): Real
+        - CalcularPerimetro(lado1: Real, lado2: Real, lado3: Real): Real
+
+    Função Construtor(base: Real, altura: Real):
+        calc.BASE = base
+        calc.ALTURA = altura
+
+    Função CalcularArea(): Real:
+        Retornar (1/2) * calc.BASE * calc.ALTURA
+
+    Função CalcularPerimetro(lado1: Real, lado2: Real, lado3: Real): Real:
+        Retornar lado1 + lado2 + lado3
+
+// código principal:
+
+Início
+    Escolha a figura geométrica 
+    Figura = LeiaFigura()
+
+    Se Figura for um Círculo:
+        Leia o raio (r)
+        Circulo = novo Circulo(r)
+        Imprimir("Área do círculo: " + Circulo.CalcularArea())
+        Imprimir("Perímetro do círculo: " + Circulo.CalcularPerimetro())
+
+    Se Figura for um Quadrado:
+        Leia o lado do quadrado (l)
+        Quadrado = novo Quadrado(l)
+        Imprimir("Área do quadrado: " + Quadrado.CalcularArea())
+        Imprimir("Perímetro do quadrado: " + Quadrado.CalcularPerimetro())
+
+Se Figura for um Triângulo:
+        Escolha o tipo de cálculo (Área ou Perímetro)
+        Se TipoDeCalculo for Área:
+            Leia a base do triângulo (b) e a altura (h)
+            Triangulo = novo Triangulo(b, h)
+            Imprimir("Área do triângulo: " + Triangulo.CalcularArea())
+        Senão, se TipoDeCalculo for Perímetro:
+            Leia os três lados do triângulo (a, b, c)
+            Imprimir("Perímetro do triângulo: " + Triangulo.CalcularPerimetro(a, b, c))
+
+   
+Fim
