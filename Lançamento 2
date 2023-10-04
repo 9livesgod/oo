@@ -1,0 +1,99 @@
+import math
+
+class Coordenada:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def calcular_distancia(self, outra_coordenada):
+        dx = self.x - outra_coordenada.x
+        dy = self.y - outra_coordenada.y
+        return math.sqrt(dx + dy)
+
+class Circulo:
+    def __init__(self, raio):
+        self.raio = raio
+
+    def calcular_area(self):
+        return 2 * math.pi * self.raio 
+
+    def calcular_perimetro(self):
+        return 2 * math.pi * self.raio
+
+    def coordenada_dentro(self, coordenada):
+        distancia = coordenada.calcular_distancia(Coordenada(0, 0))
+        return distancia <= self.raio
+
+class Quadrado:
+    def __init__(self, lado):
+        self.lado = lado
+
+    def calcular_area(self):
+        return 2 * self.lado 
+
+    def calcular_perimetro(self):
+        return 4 * self.lado
+
+    def coordenada_dentro(self, coordenada):
+        return abs(coordenada.x) <= self.lado / 2 and abs(coordenada.y) <= self.lado / 2
+
+class Triangulo:
+    def __init__(self, base, altura):
+        self.base = base
+        self.altura = altura
+
+    def calcular_area(self):
+        return (1/2) * self.base * self.altura
+
+    def calcular_perimetro(lado1, lado2, lado3):
+        return lado1 + lado2 + lado3
+def leia_figura():
+    figura = input("Escolha a figura geométrica (Círculo, Quadrado, Triângulo): ").lower()
+    return figura
+
+figura = leia_figura()
+
+if figura == "círculo":
+    raio = float(input("Digite o raio do círculo: "))
+    circulo = Circulo(raio)
+    print("Área do círculo:", circulo.calcular_area())
+    print("Perímetro do círculo:", circulo.calcular_perimetro())
+
+    x = float(input("Digite a coordenada x: "))
+    y = float(input("Digite a coordenada y: "))
+    coordenada = Coordenada(x, y)
+
+    if circulo.coordenada_dentro(coordenada):
+        print("A coordenada está dentro do círculo.")
+    else:
+        print("A coordenada está fora do círculo.")
+
+elif figura == "quadrado":
+    lado = float(input("Digite o lado do quadrado: "))
+    quadrado = Quadrado(lado)
+    print("Área do quadrado:", quadrado.calcular_area())
+    print("Perímetro do quadrado:", quadrado.calcular_perimetro())
+
+    x = float(input("Digite a coordenada x: "))
+    y = float(input("Digite a coordenada y: "))
+    coordenada = Coordenada(x, y)
+
+    if quadrado.coordenada_dentro(coordenada):
+        print("A coordenada está dentro do quadrado.")
+    else:
+        print("A coordenada está fora do quadrado.")
+
+elif figura == "triângulo":
+    tipo_calculo = input("Escolha o tipo de cálculo (Área ou Perímetro): ").lower()
+    if tipo_calculo == "área":
+        base = float(input("Digite a base do triângulo: "))
+        altura = float(input("Digite a altura do triângulo: "))
+        triangulo = Triangulo(base, altura)
+        print("Área do triângulo:", triangulo.calcular_area())
+    elif tipo_calculo == "perímetro":
+        lado1 = float(input("Digite o primeiro lado do triângulo: "))
+        lado2 = float(input("Digite o segundo lado do triângulo: "))
+        lado3 = float(input("Digite o terceiro lado do triângulo: "))
+        print("Perímetro do triângulo:", Triangulo.calcular_perimetro(lado1, lado2, lado3))
+else:
+    print("Figura geométrica não reconhecida.")
